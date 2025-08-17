@@ -1,25 +1,18 @@
 import express from "express";
-import User from "./models/usermodel.js"; // Use capital for model
+import userRouter from "./router/user_router.js";
+import User from "./models/usermodel.js";
 
 const app = express();
 
-// To parse JSON bodies
+
+//middlewares
 app.use(express.json());
+app.use(express.urlencoded {{extended: true}});
 
-app.post("/user", async (req, res) => {
-    try {
-        const newUser = await User.create({
-            name: "Reshma",
-            email: "reshmaxth@gmail.com",
-            password: "pass"
-        });
 
-        res.status(200).send(user);
-        // res.send("Welcome to backend")
-    } catch (err) {
-        res.status(500).send({ error: err.message });
-    }
-});
+        // send the created user
+       // 
+app.use("/api", userRouter)
+    
 
-// Export express app
 export default app;
