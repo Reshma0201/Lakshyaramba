@@ -1,10 +1,14 @@
 import express from 'express';
-import {postUser } from '../controller/user_controller';
+import { postUser } from '../controller/usercontroller.js';
 
-//created a router instance
 const userRouter = express.Router();
 
-//define the routes
-userRouter.route("/user").post(postUser)
+// POST /api/user
+userRouter.route("/user").post(postUser);
+
+// GET /api/hello
+userRouter.get("/hello", (req, res) => {
+  res.send("this is just a start");
+});
 
 export default userRouter;

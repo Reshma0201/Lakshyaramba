@@ -4,15 +4,16 @@ import User from "./models/usermodel.js";
 
 const app = express();
 
-
-//middlewares
+// middlewares
 app.use(express.json());
-app.use(express.urlencoded {{extended: true}});
+app.use(express.urlencoded({ extended: true }));
+
+app.use((req, res, next) => {
+ console.log("Hello")
+})
 
 
-        // send the created user
-       // 
-app.use("/api", userRouter)
-    
+// routes
+app.use("/api", userRouter);
 
 export default app;
