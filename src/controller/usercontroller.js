@@ -64,5 +64,39 @@ export const getUser = async (req, res) => {
     }
 };
 
+// PATCH - Update a user
+export const updateUser = async (req, res) => {
+    try {
+        const { id } = req.params; // <-- this gets the id from /user/:id
+        const updates = req.body;
 
-//app.get()
+        const user = await User.findByIdAndUpdate(id, updates, { new: true });
+
+        if (!user) {
+            return res.status(404).json({ success: false, message: "User not found" });
+        }
+
+        res.status(200).json({ success: true, data: user });
+
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message });
+    }
+};
+
+// DELETE - Remove a user
+export const deleteUser = async (req, res) => {
+    try {
+        const { id } = req.params; // <-- again, get id from route
+
+        const user = await User.findByIdAndDelete(id);
+
+        if (!user) {
+            return res.status(404).json({ success: false, message: "User not found" });
+        }
+
+        res.status(200).json({ success: true, message: "User deleted successfully" });
+
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message });
+    }
+};
