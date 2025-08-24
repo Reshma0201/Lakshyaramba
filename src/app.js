@@ -9,11 +9,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use((req, res, next) => {
- console.log("Hello")
-})
+ console.log("Hello, are you okyayyyy");
+ next();
+});
 
-
-// routes
+// routes...mounts all routes from userRouter under /api
 app.use("/api", userRouter);
 
 export default app;

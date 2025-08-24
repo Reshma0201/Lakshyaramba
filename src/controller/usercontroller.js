@@ -39,7 +39,7 @@ export const postUser = async (req, res) => {
 // GET - Fetch user(s) by email (or all if no email)
 export const getUser = async (req, res) => {
     try {
-        const { email } = req.query; // ✅ FIXED destructuring
+        const { email } = req.query; //  FIXED destructuring
 
         let users;
         if (email) {
@@ -63,3 +63,6 @@ export const getUser = async (req, res) => {
         });
     }
 };
+
+
+//app.get()
