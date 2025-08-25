@@ -1,0 +1,23 @@
+import express from 'express';
+import { postUser } from '../controller/usercontroller.js';
+import { getUser } from '../controller/usercontroller.js';
+import { updateUser } from '../controller/usercontroller.js';
+import { deleteUser } from '../controller/usercontroller.js';
+
+
+
+const userRouter = express.Router();
+
+// POST /api/user
+userRouter.route("/user").post(postUser);
+
+// GET /api/hello
+userRouter.get("/hello", (req, res) => {
+  res.send("this is just a start");
+});
+
+
+userRouter.get("/user", getUser);
+userRouter.patch("/user/:id", updateUser);
+userRouter.delete("/user/:id", deleteUser);
+export default userRouter;
