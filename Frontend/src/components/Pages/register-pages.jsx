@@ -1,7 +1,7 @@
 import { Link } from 'react-router';
 import RegisterForm from '../forms/register-form';
 
-import "./register-page.css"
+import "./register-pages.css"
 
 const RegisterPage = () => {
   return (

@@ -1,11 +1,11 @@
-import {createRoot } from "react-dom/client";
-import React from "react";
-import ReactDOM from "react-dom/client";
-import Abp from "./App"; // make sure the path is correct
-import "./index.css"; // optional
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
 
-createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <Abp />
-  </React.StrictMode>
-);
+import './styles/main.css'
+import App from './App'
+
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
+)

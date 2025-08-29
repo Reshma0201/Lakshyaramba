@@ -1,16 +1,14 @@
-import React, { useState } from 'react';
+
+import React, { useState } from "react";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
 import useAuthStore from "./stores/authStore";
 import './App.css';
-import RegisterPage from "../components/pages/register-page";
-
-
-const AppLayout = () => {
+import RegisterPage from "./components/Pages/register-pages";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+ const AppLayout = () => {
   const initializeAuth = useAuthStore(state => state.initializeAuth);
-
-  React.useEffect(() => {
+React.useEffect(() => {
     initializeAuth();
   }, [initializeAuth]);
 
@@ -25,7 +23,7 @@ const AppLayout = () => {
   );
 };
 
-function App() {
+function TodoApp() {
 
   const [todos, setTodos] = useState([]); 
   const [input, setInput] = useState(""); 
@@ -83,6 +81,7 @@ const toggleDone = (index) => {
 
       </form>
  <ul>
+  
         {todos.map((todo, index) => (
           <li key={index}>
             <input 
@@ -99,5 +98,25 @@ const toggleDone = (index) => {
     </> 
   );
 }
+
+
+// keep App separate
+const App = () => {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route element={<AppLayout />}>
+        <Route path="/" element={<TodoApp />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/todo" element={<TodoApp />} />  {/* added route for TodoApp */}
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
+};
+
+
+
+
 
 export default App;
