@@ -1,11 +1,16 @@
 
 import React, { useState } from "react";
+import HomePage from "./components/Pages/home-page";
+import LoginPage from "./components/Pages/login-page";
+import ProfilePage from "./components/Pages/profile-page";
+import NotFoundPage from "./components/Pages/not-found-page";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import useAuthStore from "./stores/authStore";
 import './App.css';
 import RegisterPage from "./components/Pages/register-pages";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import ProtectedRoute from "./components/protected-route";
  const AppLayout = () => {
   const initializeAuth = useAuthStore(state => state.initializeAuth);
 React.useEffect(() => {
@@ -81,7 +86,7 @@ const toggleDone = (index) => {
 
       </form>
  <ul>
-  
+
         {todos.map((todo, index) => (
           <li key={index}>
             <input 
@@ -106,17 +111,30 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route element={<AppLayout />}>
-        <Route path="/" element={<TodoApp />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/todo" element={<TodoApp />} />  {/* added route for TodoApp */}
+          <Route path="login" element={<LoginPage />} />
+          <Route path="register" element={<RegisterPage />} />
+          <Route path="todo" element={<TodoApp />} /> {/* added route for TodoApp */}
+          <Route path="/" element={<TodoApp />} />
         </Route>
+
+        <Route
+          path="profile"
+          element={
+            <ProtectedRoute>
+              <ProfilePage />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
   );
 };
 
-
-
-
-
 export default App;
+
+
+
+
+

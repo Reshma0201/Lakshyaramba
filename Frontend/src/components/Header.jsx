@@ -11,7 +11,7 @@ const Header = () => {
         <div className="header-content">
           <div className="logo">
             <Link to="/">
-              <h1>MERN Auth</h1>
+              <h1></h1>
             </Link>
           </div>
           

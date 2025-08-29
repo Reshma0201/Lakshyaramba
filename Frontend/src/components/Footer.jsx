@@ -5,8 +5,8 @@ const Footer = () => {
     <footer className="footer">
       <div className="container">
         <div className="footer-content">
-          <p>&copy; 2024 MERN Authentication System. Built for learning purposes.</p>
-          <p>Simple and secure authentication with React and Node.js</p>
+          <p>&copy; Built for learning purposes.</p>
+          <p>Made with love {'\u2665'}</p>
         </div>
       </div>
     </footer>
