@@ -35,7 +35,7 @@ const userRouter = express.Router()
 
 // define the routes - these should be protected as they deal with user data
 userRouter.route("/user").post(authMiddleware, postUser)
-userRouter.route("/user").patch(authMiddleware, patchUser);
+userRouter.route("/user").patch(authMiddleware, updateUser);
 userRouter.route("/user").get(authMiddleware, getUser);
 userRouter.route("/user").delete(authMiddleware, deleteUser)
 

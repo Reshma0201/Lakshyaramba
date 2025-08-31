@@ -33,12 +33,14 @@ function TodoApp() {
   const [todos, setTodos] = useState([]); 
   const [input, setInput] = useState(""); 
   const [count, setCount] = useState(0)
+  const [deadline, setDeadline] = useState("");
 const [category, setCategory] = useState("Chores"); // added state for category
 
   const addTodo = () => {
   if (input.trim() === "") return; // ignore empty input
-  setTodos([...todos, { text: input, done: false, category}]); // add new task
+  setTodos([...todos, { text: input, done: false, category, deadline}]); // add new task
   setInput(""); // clear input
+  setDeadline("");
 };
 
 const toggleDone = (index) => {
@@ -51,86 +53,107 @@ const toggleDone = (index) => {
       const updatedTodos = [...newTodos];
       updatedTodos.splice(index, 1);
       setTodos(updatedTodos);
-    }, 1000); // 1000ms = 1 second
+    }, 500); // 1000ms = 1 second
   }
   setTodos(newTodos); // update state or Updates React state so the UI refreshes and the task list changes.
 };
 
   return (
-  
-    <>
-  <div className="container">
-    <h1>To-Do List</h1>
+  <>
+    <div className="container">
+      <h1>To-Do List</h1>
 
-
-    <form onSubmit={(e) => { 
-    e.preventDefault(); // prevent page reload
-    addTodo();          // call the function to add task
-}}>
-  <input 
-          type="text" 
-          value={input} //links the input box to React’s state
-          onChange={(e) => setInput(e.target.value)} 
-          placeholder="Enter your task" 
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          addTodo();
+        }}
+      >
+        <input
+          type="text"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          placeholder="Enter your task"
         />
-        <button type="submit">Add</button>
-        
+
+        <input
+          type="datetime-local"
+          value={deadline}
+          onChange={(e) => setDeadline(e.target.value)}
+        />
+
         <select value={category} onChange={(e) => setCategory(e.target.value)}>
-   <option value="Chores">Chores</option>
-            <option value="Education">Education</option>
-            <option value="Food">Food</option>
-            <option value="Health">Health</option>
-            <option value="Fashion">Fashion</option>
-            <option value="Others">Others</option>
-      </select>
+          <option value="Others">Others</option>
+          <option value="Chores">Chores</option>
+          <option value="Coding">Coding</option>
+          <option value="Assignment">Assignment</option>
+          <option value="Learn">Learn</option>
+        </select>
 
+        <button type="submit">Add</button>
       </form>
- <ul>
 
+      <ul>
         {todos.map((todo, index) => (
           <li key={index}>
-            <input 
-        type="checkbox" 
-        checked={todo.done} 
-        onChange={() => toggleDone(index)} 
-      />
-            {todo.text} <span>({todo.category})</span>
-      {/*<button onClick={() => toggleDone(index)}>Done</button> */}
+             <input
+        type="checkbox"
+        checked={todo.done}
+        onChange={() => toggleDone(index)}
+        />
+            <span
+              style={{
+                textDecoration: todo.done ? "line-through" : "none",
+                color:
+                  todo.deadline && new Date(todo.deadline) < new Date()
+                    ? "red"
+                    : "black",
+              }}
+              onClick={() => toggleDone(index)}
+            >
+              {todo.text} ({todo.category})
+            </span>
+            {todo.deadline && (
+              <small> - Deadline: {new Date(todo.deadline).toLocaleString()}</small>
+            )}
           </li>
         ))}
       </ul>
     </div>
-    </> 
-  );
+  </>
+);
 }
-
 
 // keep App separate
 const App = () => {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route element={<AppLayout />}>
-          <Route path="login" element={<LoginPage />} />
-          <Route path="register" element={<RegisterPage />} />
-          <Route path="todo" element={<TodoApp />} /> {/* added route for TodoApp */}
-          <Route path="/" element={<TodoApp />} />
-        </Route>
+  <Routes>
+    {/* Public pages without AppLayout */}
+    <Route path="login" element={<LoginPage />} />
+    <Route path="register" element={<RegisterPage />} />
 
-        <Route
-          path="profile"
-          element={
-            <ProtectedRoute>
-              <ProfilePage />
-            </ProtectedRoute>
-          }
-        />
+    {/* Pages with AppLayout */}
+    <Route element={<AppLayout />}>
+      <Route path="/" element={<TodoApp />} />
+      <Route path="todo" element={<TodoApp />} />
 
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
-    </BrowserRouter>
+      <Route
+        path="profile"
+        element={
+          <ProtectedRoute>
+            <ProfilePage />
+          </ProtectedRoute>
+        }
+      />
+    </Route>
+
+    <Route path="*" element={<NotFoundPage />} />
+  </Routes>
+</BrowserRouter>
+
   );
-};
+}
 
 export default App;
 

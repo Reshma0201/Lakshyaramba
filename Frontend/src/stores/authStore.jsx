@@ -1,8 +1,7 @@
-
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import api from '../config/axios.js';
-import { tokenUtils } from '../utils/token-utils.js';
+import tokenUtils from '../utils/token-utils.js';
 
 const useAuthStore = create(
   persist(
