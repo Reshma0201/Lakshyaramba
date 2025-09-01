@@ -1,10 +1,11 @@
 import { Link } from 'react-router';
 import LoginForm from '../forms/login-form';
-
 import "./login-page.css"
+import Header from '../Header';
 
 const LoginPage = () => {
   return (
+    
     <div className="login-page">
       <div className="container">
         <div className="auth-container">

@@ -8,9 +8,9 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import useAuthStore from "./stores/authStore";
 import './App.css';
 import RegisterPage from "./components/Pages/register-pages";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
+import Layout from "./components/Layout";
 import ProtectedRoute from "./components/protected-route";
+
  const AppLayout = () => {
   const initializeAuth = useAuthStore(state => state.initializeAuth);
 React.useEffect(() => {
@@ -127,14 +127,16 @@ const toggleDone = (index) => {
 // keep App separate
 const App = () => {
   return (
+    
     <BrowserRouter>
   <Routes>
+    <Route element={<Layout />} >
     {/* Public pages without AppLayout */}
     <Route path="login" element={<LoginPage />} />
     <Route path="register" element={<RegisterPage />} />
 
     {/* Pages with AppLayout */}
-    <Route element={<AppLayout />}>
+    
       <Route path="/" element={<TodoApp />} />
       <Route path="todo" element={<TodoApp />} />
 
@@ -147,6 +149,7 @@ const App = () => {
         }
       />
     </Route>
+    
 
     <Route path="*" element={<NotFoundPage />} />
   </Routes>
