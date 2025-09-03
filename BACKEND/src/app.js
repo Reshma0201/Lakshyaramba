@@ -24,7 +24,7 @@ import userRouter from "./router/user_router.js";
 import authRouter from "./router/auth_router.js";
 import profileRouter from "./router/profile_router.js";
 import errorMiddleware from "./middlewares/error_middleware.js";
-
+import router from "./router/Todo_router.js";
 const app = express();
 
 // middlewares
@@ -36,6 +36,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api", userRouter);
 app.use("/api", authRouter);
 app.use("/api", profileRouter);
+
+app.use("/api", router);
 
 // error handling middleware
 app.use(errorMiddleware);

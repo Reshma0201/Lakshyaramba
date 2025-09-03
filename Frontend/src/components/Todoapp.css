@@ -1,4 +1,6 @@
-/* 🌟 General container styling */
+/* TodoApp.css */
+
+/* App container */
 .container {
   max-width: 600px;
   margin: 40px auto;
@@ -9,14 +11,13 @@
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Title */
 .container h1 {
   text-align: center;
   margin-bottom: 20px;
   color: #333;
 }
 
-/* 🌟 Form styling */
+/* Form */
 form {
   display: flex;
   flex-wrap: wrap;
@@ -57,7 +58,7 @@ form button:hover {
   background: #357abd;
 }
 
-/* 🌟 Todo List Styling */
+/* Todo List */
 ul {
   list-style: none;
   padding: 0;
@@ -71,20 +72,19 @@ li {
   margin-bottom: 10px;
   padding: 10px 12px;
   border-radius: 8px;
-  transition: 0.2s;
+  transition: background 0.2s;
 }
 
 li:hover {
   background: #f1f1f1;
 }
 
-/* Text inside todo */
 li span {
   flex: 1;
   margin-left: 10px;
 }
 
-/* Deadline text */
+/* Deadline */
 li small {
   font-size: 12px;
   color: gray;

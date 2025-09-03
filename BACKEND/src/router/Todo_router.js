@@ -1,4 +1,19 @@
 import express from "express";
+import { createTodo, getTodos, updateTodo, deleteTodo } from "../controller/todocontroller.js";
+import authMiddleware from "../middlewares/auth_middleware.js";
+
+const router = express.Router();
+
+// Protect all todo routes
+router.post("/todos", authMiddleware, createTodo);
+router.get("/todos", authMiddleware, getTodos);
+router.put("/todos/:id", authMiddleware, updateTodo);
+router.delete("/todos/:id", authMiddleware, deleteTodo);
+
+export default router;
+
+
+/*import express from "express";
 import Todo from "../models/todomodel.js";
 
 const router = express.Router();
@@ -14,7 +29,6 @@ router.post("/todo", async (req, res) => {
 });
 
 export default router;
-
 router.get("/todos", async (req, res) => {
   try {
     const todos = await Todo.find();
@@ -45,4 +59,4 @@ router.delete("/todo/:id", async (req, res) => {
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }
-});
+}); */
