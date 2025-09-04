@@ -4,11 +4,12 @@ import Todo from "../models/todomodel.js";
 //  Create a new todo
 export const createTodo = async (req, res) => {
   try {
-    const { title } = req.body;
+    const { title, category } = req.body;
 
     // userId comes from auth middleware (decoded JWT)
     const todo = new Todo({
       title,
+      category,
       user: req.user.id, //  link todo to the logged-in user
     });
 
