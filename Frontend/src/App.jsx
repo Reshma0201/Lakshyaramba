@@ -8,8 +8,8 @@ import NotFoundPage from "./components/Pages/not-found-page";
 import RegisterPage from "./components/Pages/register-pages";
 import Layout from "./components/Layout";
 import ProtectedRoute from "./components/protected-route";
-import TodoApp from "./components/TodoApp"; // new separate file
-
+import TodoApp from "./components/Todoapp.jsx"; // new separate file
+import AllTodos from "./components/Pages/Todoall";
 import useAuthStore from "./stores/authStore";
 
 const App = () => {
@@ -30,7 +30,7 @@ const App = () => {
           {/* TodoApp (no auth required, but you can wrap in ProtectedRoute if needed) */}
           <Route path="/" element={<TodoApp />} />
           <Route path="todo" element={<TodoApp />} />
-
+          <Route path="Todoall" element={<AllTodos/>} />
           {/* Protected profile */}
           <Route
             path="profile"

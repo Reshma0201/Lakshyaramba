@@ -1,0 +1,6 @@
+flow of token
+( user enters data on fronted
+fronted stores token (localStorage)
+frontend sends token with protection
+frontend sends a request to the backend 
+backend checks credential or chekcs token )

@@ -47,14 +47,24 @@ function TodoApp() {
   };
 
   // toggle done
-  const toggleDone = async (id, completed) => {
-    try {
-      const response = await apiClient.put(`/todos/${id}`, { completed: !completed });
-      setTodos(todos.map((t) => (t._id === id ? response.data : t)));
-    } catch (error) {
-      console.error("Error updating todo:", error.response?.data || error.message);
+const toggleDone = async (id, completed) => {
+  try {
+    const response = await apiClient.put(`/todos/${id}`, { completed: !completed });
+
+    // Step 1: update state immediately (show check + strikethrough)
+    setTodos(todos.map((t) => (t._id === id ? response.data : t)));
+
+    // Step 2: after 1.5s, remove from UI if completed
+    if (!completed) {
+      setTimeout(() => {
+        setTodos((prev) => prev.filter((t) => t._id !== id));
+      }, 500); // 500ms = 0.5 seconds
     }
-  };
+  } catch (error) {
+    console.error("Error updating todo:", error.response?.data || error.message);
+  }
+};
+
 
   //delete todo
   const deleteTodo = async (id) => {
@@ -64,9 +74,13 @@ function TodoApp() {
     } catch (error) {
       console.error("Error deleting todo:", error.response?.data || error.message);
     }
-  };
 
+
+ 
+  };
+const completedCount = todos.filter(todo => todo.completed).length;
   return (
+    <>
     <div className="container">
       <h1>To-Do List</h1>
 
@@ -126,7 +140,13 @@ function TodoApp() {
 </ul>
 
     </div>
+
+<div className= "container2">
+  <h1> Total task completed: {completedCount}</h1> </div> 
+</>
   );
+
 }
+
 
 export default TodoApp;

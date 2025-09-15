@@ -1,3 +1,4 @@
+///manages jwt token in the app
 const TOKEN_KEY = 'token';
 
 export const tokenUtils = {

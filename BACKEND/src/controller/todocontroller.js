@@ -23,7 +23,7 @@ export const createTodo = async (req, res) => {
 //  Get all todos for logged-in user
 export const getTodos = async (req, res) => {
   try {
-    const todos = await Todo.find({ user: req.user.id });
+    const todos = await Todo.find({ user: req.user.id, completed: false });
     res.json(todos);
   } catch (error) {
     res.status(500).json({ message: "Error fetching todos", error });
