@@ -1,6 +1,5 @@
 import Todo from "../models/todomodel.js";
 
-
 //  Create a new todo
 export const createTodo = async (req, res) => {
   try {
@@ -23,7 +22,7 @@ export const createTodo = async (req, res) => {
 //  Get all todos for logged-in user
 export const getTodos = async (req, res) => {
   try {
-    const todos = await Todo.find({ user: req.user.id, completed: false });
+    const todos = await Todo.find({ user: req.user.id });
     res.json(todos);
   } catch (error) {
     res.status(500).json({ message: "Error fetching todos", error });

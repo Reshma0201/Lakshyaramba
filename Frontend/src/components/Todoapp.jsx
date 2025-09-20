@@ -1,4 +1,4 @@
-
+import { Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import apiClient from "../utils/apiClient";
 
@@ -78,13 +78,18 @@ const toggleDone = async (id, completed) => {
 
  
   };
+  
 const completedCount = todos.filter(todo => todo.completed).length;
   return (
     <>
     <div className="container">
       <h1>To-Do List</h1>
+      <Link to="/Todoall">
+          <button style={{ marginTop: "10px" }}>View All Todos</button>
+        </Link>
 
       <form onSubmit={addTodo}>
+        
   <input
     type="text"
     value={input}
