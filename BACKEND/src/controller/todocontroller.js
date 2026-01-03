@@ -19,15 +19,26 @@ export const createTodo = async (req, res) => {
   }
 };
 
-//  Get all todos for logged-in user
+////  Get all todos for logged-in user (with optional filter)
 export const getTodos = async (req, res) => {
   try {
-    const todos = await Todo.find({ user: req.user.id });
+    const { status } = req.query; // ✅ read query param (like ?status=completed)
+
+    let filter = { user: req.user.id };
+
+    if (status === "completed") {
+      filter.completed = true;
+    } else if (status === "pending") {
+      filter.completed = false;
+    }
+
+    const todos = await Todo.find(filter);
     res.json(todos);
   } catch (error) {
     res.status(500).json({ message: "Error fetching todos", error });
   }
 };
+
 
 //  Update a todo (only if belongs to user)
 export const updateTodo = async (req, res) => {

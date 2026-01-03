@@ -1,7 +1,7 @@
 /* TodoApp.css */
 
 /* App container */
-.container {
+/* .container {
   max-width: 600px;
   margin: 40px auto;
   padding: 20px;
@@ -28,7 +28,7 @@
 }
 
 /* Form */
-form {
+/*form {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
@@ -69,7 +69,7 @@ form button:hover {
 }
 
 /* Todo List */
-ul {
+/*ul {
   list-style: none;
   padding: 0;
 }
@@ -114,3 +114,60 @@ li button {
 li button:hover {
   color: red;
 }
+
+
+.top {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 300px;   /* 👈 space on same line */
+ background-color: transparent;
+  box-shadow: none;
+  border: none;
+  font-size: 30px;
+  ;
+}
+
+.middle {
+  background-color: pink;
+  height: 70px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;   /* horizontal center */
+  align-items: center;       /* vertical center */
+}
+
+.middle form {
+  display: flex;
+  align-content: center;       /* 👈 THIS is the key */
+  gap: 10 px; 
+                /* space between inputs */
+}
+
+.contain {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.todo-item {
+  display: flex;
+  align-items: flex-start;   /* 🔑 NOT center */
+  gap: 10px;
+}
+
+.todo-text {
+  display: flex;
+  flex-direction: column;   /* 🔑 vertical stack */
+}
+
+.todo-deadline {
+  font-size: 12px;
+  color: gray;
+  margin-top: 4px;
+}
+

@@ -1,6 +1,13 @@
-flow of token
+ { flow of token
 ( user enters data on fronted
 fronted stores token (localStorage)
 frontend sends token with protection
 frontend sends a request to the backend 
 backend checks credential or chekcs token )
+
+ }
+
+access denied no token provided solution
+
+ problem 1: when checking off the todos, the total task completed updates to 1 but instantly drops to 0. 
+ total task completed is the section where total no of task which is completed is written there

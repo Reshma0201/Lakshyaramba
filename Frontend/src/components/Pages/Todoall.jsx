@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import apiClient from "../../utils/apiClient";
 import { Link } from 'react-router';
 import useAuth from "../../hooks/useAuth.js";
-
 import './Todoall.css';
 
 function AllTodos() {
@@ -19,7 +18,7 @@ function AllTodos() {
     };
     fetchTodos();
   }, []);
-
+  
   return (
     <div>
       <h1>All Todos</h1>
@@ -36,3 +35,8 @@ function AllTodos() {
 }
 
 export default AllTodos;
+
+
+
+
+
