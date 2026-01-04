@@ -140,6 +140,7 @@ const completedCount = todos.filter(todo => todo.completed).length;
       </div>
     )}
   </div>
+{/* <pre>{JSON.stringify(todo, null, 2)}</pre> */}
 
   <button onClick={() => deleteTodo(todo._id)}>❌</button>
 </li>

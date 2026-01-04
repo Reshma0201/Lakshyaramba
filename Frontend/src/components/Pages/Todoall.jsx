@@ -35,8 +35,3 @@ function AllTodos() {
 }
 
 export default AllTodos;
-
-
-
-
-

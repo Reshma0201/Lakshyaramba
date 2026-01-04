@@ -1,7 +1,7 @@
 /* TodoApp.css */
 
 /* App container */
-/* .container {
+.container {
   max-width: 600px;
   margin: 40px auto;
   padding: 20px;
@@ -28,7 +28,7 @@
 }
 
 /* Form */
-/*form {
+form {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
@@ -69,7 +69,7 @@ form button:hover {
 }
 
 /* Todo List */
-/*ul {
+ul {
   list-style: none;
   padding: 0;
 }
@@ -167,7 +167,7 @@ li button:hover {
 
 .todo-deadline {
   font-size: 12px;
-  color: gray;
+  color: rgb(49, 28, 28);
   margin-top: 4px;
 }
 

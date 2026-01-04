@@ -3,12 +3,13 @@ import Todo from "../models/todomodel.js";
 //  Create a new todo
 export const createTodo = async (req, res) => {
   try {
-    const { title, category } = req.body;
+    const { title, category, deadline } = req.body;
 
     // userId comes from auth middleware (decoded JWT)
     const todo = new Todo({
       title,
       category,
+      deadline: deadline ? new Date(deadline) : undefined, // ✅ store it
       user: req.user.id, //  link todo to the logged-in user
     });
 
@@ -44,11 +45,11 @@ export const getTodos = async (req, res) => {
 export const updateTodo = async (req, res) => {
   try {
     const { id } = req.params;
-    const { title, completed } = req.body;
+    const { title, completed, deadline, category} = req.body;
 
     const todo = await Todo.findOneAndUpdate(
       { _id: id, user: req.user.id }, // check todo belongs to user
-      { title, completed },
+      { title, completed, deadline, category },
       { new: true }
     );
 
